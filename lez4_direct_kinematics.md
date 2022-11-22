@@ -40,7 +40,7 @@ Tutti gli elementi della matrice sono funzioni dei valori dei giunti, quindi $T_
 
 Nei casi più semplici possiamo calcolare $T_e^b(q)$ in modo analitico, attraverso alcune considerazioni geometriche. Per esempio nel caso di un manipolatore planare a due link:   
 
-<img style="filter: invert(80%); width: 300px; position:relative; left: 50%; transform: translateX(-50%);" src="lez4_2d_simple_manipulator.svg" />  
+<img style="filter: invert(80%); width: 300px; position:relative; left: 50%; transform: translateX(-50%); -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%);" src="lez4_2d_simple_manipulator.svg" />  
 
 Possiamo calcolare $T_e^b(q)$:  
 $$ T_e^b(q) = \begin{bmatrix} n_e^b & s_e^b & a_e^b & p_e^b \\ 0 & 0 & 0 & 1 \end{bmatrix} = \begin{bmatrix} 0 & s_{12} & c_{12} & a_1c_1+a_2c_{12} \\ 0 & -c_{12} & s_{12} & a_1s_1+a_2+c_{12} \\ 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} $$  
