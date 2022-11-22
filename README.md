@@ -1,7 +1,4 @@
-Visita il sito web cliccando [QUI!](https://giulianbiolo.github.io/Fondamenti-Di-Robotica/)
-
-# Fondamenti Di Robotica:  
--------------------------
+## Visita il sito web cliccando [QUI!](https://giulianbiolo.github.io/Fondamenti-Di-Robotica/)
 
 ## Indice:  
 1. [Modelling Robots](https://giulianbiolo.github.io/Fondamenti-Di-Robotica/lez1_modelling_robots)
