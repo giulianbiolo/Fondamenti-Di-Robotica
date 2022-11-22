@@ -106,4 +106,42 @@ $$A_i^{i-1}(q_i)=A_{i'}^{i-1}A_i^{i'}=\begin{bmatrix} c_{\theta_i} & -s_{\theta_
 
 A questo punto non ci resta altro che moltiplicare tutte queste matrici ricavate dai vari giunti per ottenere $T_e^b(q)$.  
 
-[ Pagina 19/41 ]  
+
+----------------------------------
+## Three Link Planar Arm - Example  
+
+Per ogni giunto abbiamo una rotazione attorno l'asse $z_{i-1}$ ed una traslazione lungo l'asse del link:  
+
+$$A_i^{i-1}(\theta_i)=\begin{bmatrix} c_{i} & -s_{i} & 0 & a_ic_i \\ s_{i} & c_{i} & 0 & a_is_i \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix}$$  
+
+Per cui otteniamo:  
+
+$$T_3^0(q)=A_1^0A_2^1A_3^2=\begin{bmatrix} c_{123} & -s_{123} & 0 & a_1c_1+a_2c_{12}+a_3c_{123} \\ s_{123} & c_{123} & 0 & a_1s_1+a_2s_{12}+a_3s_{123} \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix}$$  
+
+E di solito il frame connesso all'end effector ha un angolo di approccio $z_e$ quindi dobbiamo anche ruotare tutto di $90^{\circ}$ attorno all'asse $y_3$:  
+
+$$T_e^3=\begin{bmatrix} 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \\ -1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix}$$  
+
+[ Per ulteriori esempi far riferimento al pdf [**"Direct Kinematics"**](https://didatticaonline.unitn.it/dol/pluginfile.php/1666225/mod_resource/content/1/lect6.pdf#page=22) su moodle ]
+
+--------------------
+## Operational Space  
+
+La notazione che useremo per denotare la posizione dell'end effector sarà quella degli angoli di eulero in quanto denotare tutti i tre vettori $n_e,s_e,a_e$ sarebbe ridondante in quanto sono tutti ortogonali tra loro.  
+
+$$x_e=\begin{bmatrix} p_e \\ \phi_e \end{bmatrix}$$  
+
+Ove $x_e$ deve far parte dello spazio di operazione del manipolatore, $p_e$ è la posizione dell'end effector e $\phi_e$ è l'angolo di approccio dell'end effector al punto di interesse $x_e$.  
+
+Lo spazio dei giunti è invece:  
+
+$$q=\begin{bmatrix} q_1 \\ ... \\ q_n \end{bmatrix}$$  
+
+$$q_i=\begin{cases} \theta_i & \text{giunto revolute} \\ d_i & \text{giunto prismatico} \end{cases}$$  
+
+Lo spazio di lavoro ( Workspace ) è invece l'insieme di tutte le posizioni raggiungibili dal manipolatore.  
+Distinguiamo tra:  
+- **Reachable Space:** punti raggiungibili dal manipolatore con almeno una configurazione di giunti  
+- **Dexterous Space:** punti raggiungibili dal manipolatore con più configurazioni di giunti  
+
+Chiaramente lo spazio di destrezza è un sottoinsieme dello spazio raggiungibile.  
