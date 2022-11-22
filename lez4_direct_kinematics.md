@@ -38,4 +38,30 @@ Per esempio se l'end-effector è un gripper avremo che $a_e$ è scelto in base a
 
 Tutti gli elementi della matrice sono funzioni dei valori dei giunti, quindi $T_e^b(q)$ è una funzione di $q$.  
 
-[ Pagina 7 / 41 ]  
+Nei casi più semplici possiamo calcolare $T_e^b(q)$ in modo analitico, attraverso alcune considerazioni geometriche. Per esempio nel caso di un manipolatore planare a due link:   
+
+<img style="filter: invert(80%); width: 300px; position:relative; left: 50%; transform: translateX(-50%);" src="lez4_2d_simple_manipulator.svg" />  
+
+Possiamo calcolare $T_e^b(q)$:  
+$$ T_e^b(q) = \begin{bmatrix} n_e^b & s_e^b & a_e^b & p_e^b \\ 0 & 0 & 0 & 1 \end{bmatrix} = \begin{bmatrix} 0 & s_{12} & c_{12} & a_1c_1+a_2c_{12} \\ 0 & -c_{12} & s_{12} & a_1s_1+a_2+c_{12} \\ 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} $$  
+
+Ove $s_i=\sin(\theta_i)$, $c_i=\cos(\theta_i)$, $s_{12}=\sin(\theta_1+\theta_2)$, $c_{12}=\cos(\theta_1+\theta_2)$.  
+
+In casi più complessi la derivazione può essere molto più difficile, per cui dobbiamo trovare una soluzione generale al problema.  
+
+Prendendo in considerazione un manipolatore generico di $n+1$ link e $n$ giunti. Attacchiamo ad ogni giunto un frame di riferimento dove la posa del frame $i+1$ sarà determinata da una semplice trasformazione dal frame $i$.  
+L'idea è che possiamo ricostruire la trasformazione $T_e^b(q)$ in modo ricorsivo.  
+
+$$T_n^0(q)=A_1^0(q_1)A_2^1(q_2)...A_n^{n-1}(q_n)$$  
+
+Ove $A_i^{i-1}(q_i)$ è una trasformazione omogenea funzione di $q_i$ che porta dal frame $i-1$ al frame $i$.  
+Per completare il calcolo dobbiamo considerare anche la trasformazione dalla base al primo link e dall'ultimo link all'end-effector che tipicamente sono costanti:  
+
+$$T_e^b(q)=T_0^bT_n^0(q)T_e^n$$  
+
+
+## Denavit-Hartenberg Convention  
+
+La convenzione Denavit-Hartenberg è una convenzione per rappresentare i manipolatori in modo da poter calcolare la trasformazione $T_e^b(q)$ in modo semplice ed automatico.  
+
+[ Pagina 10 / 41 ]  
