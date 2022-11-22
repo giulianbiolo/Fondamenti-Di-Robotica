@@ -48,11 +48,15 @@ I robot vengono modellati come una collezione di corpi rigidi connessi tra loro 
 
 Presi 3 frame di riferimento $O-x_1y_1z_1$, $O-x_2y_2z_2$ e $O-x_3y_3z_3$ consideriamo un punto nei tre sistemi di riferimento.  
 Il punto rispetterà le seguenti equazioni:  
-$$p^1=R^1_2p^2$$
-$$p^0=R^0_1p^1$$
-$$p^0=R^0_2p^2=R^0_1R^1_2p^2$$
-Si può infatti dimostrare che generalmente vale:
+
+$$p^1=R^1_2p^2$$  
+$$p^0=R^0_1p^1$$  
+$$p^0=R^0_2p^2=R^0_1R^1_2p^2$$  
+
+Si può infatti dimostrare che generalmente vale:  
+
 $$R^i_j=(R^j_i)^{-1}=(R^j_i)^T$$  
+
 
 ### Parametrizzazioni delle rotazioni:
 ======================================
