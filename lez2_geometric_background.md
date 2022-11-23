@@ -20,7 +20,10 @@
 Fondamenti Di Robotica - Lezione 2
 ==================================
 
+
+--------------------------
 ## Geometric Understanding
+
 
 ### Matrici Di Rotazione ( Rotation Matrices ):
 ==============================================
