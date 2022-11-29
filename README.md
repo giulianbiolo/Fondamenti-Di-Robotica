@@ -7,3 +7,4 @@
 4. [Direct Kinematics](https://giulianbiolo.github.io/Fondamenti-Di-Robotica/lez4_direct_kinematics)
 5. [Inverse Kinematics](https://giulianbiolo.github.io/Fondamenti-Di-Robotica/lez5_inverse_kinematics)
 6. [Differential Kinematics](https://giulianbiolo.github.io/Fondamenti-Di-Robotica/lez6_differential_kinematics)
+7. [URDF Modelling](https://giulianbiolo.github.io/Fondamenti-Di-Robotica/../../../lez7_urdf_modelling)
