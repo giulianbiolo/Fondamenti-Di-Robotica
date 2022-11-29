@@ -110,4 +110,119 @@ Un modo conveniente di setuppare l'environment di nodi utilizzati è tramite un 
 </launch>
 ```
 
-[ Pagina 24 / 52 ]  
+
+-------------------
+## RealSense Camera  
+
+La **RealSense Camera** è una camera che permette di ottenere immagini RGB e profondità. Proviamo ora ad implementarla scrivendo un file di configurazione XACRO.  
+```xml
+<xacro:if value="$(arg vision_sensor)">
+  <xacro:include filename="$(find ur_description)/sensors/d435_camera.urdf.xacro"/>
+  <xacro:property name="camera_fov" value="3.0"/>
+  <xacro:property name="camera_width" value="640"/>
+  <xacro:property name="camera_height" value="480"/>
+  <xacro:property name="camera_near" value="0.1"/>
+  <xacro:property name="camera_far" value="100"/>
+  <xacro:property name="m_camera" value="0.07"/>
+
+  <xacro:d435_camera parent="tool0" name="ee_camera" camera_plugin="true">
+    <origin xyz="0.05 0.0 -0.02" rpy="0 -1.57 0.0"/>
+  </xacro:d435_camera>
+</xacro:if>
+```
+Il tag **xacro:if** permette di includere il tag **xacro:d435_camera** solo se il parametro **vision_sensor** è settato a true.  
+Il tag **xacro:include** permette di includere un file XACRO.  
+Il tag **xacro:property** permette di definire delle variabili che possono essere utilizzate all'interno del file XACRO.  
+
+
+------------------
+## SDF File Format  
+
+Il formato SDF è un formato XML che descrive un modello fisico di un robot e il mondo di simulazione di **Gazebo**.  
+Il tag **model** descrive il modello del robot.  
+```xml
+<?xml version='1.0'?>
+<sdf version="1.4">
+  <model name="box">
+    <pose>0. 0. 0. 0. 0. 0.</pose>
+    <static>true</static>
+    <link name="link">
+      <inertial>
+        <mass>1.0</mass>
+        <inertia>
+          <ixx>0.08</ixx> <ixy>0.0</ixy> <ixz>0.0</ixz>
+          <iyy>0.08</iyy> <iyz>0.0</iyz> <izz>0.08</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>1 1 1</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>1 1 1</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>
+```
+Nel tag **geometry** si può definire anche il tag **uri** che permette di caricare un modello da un file **stl**, assieme a questo si può definire anche un tag **scale** per scalare il modello caricato.  
+
+Il tag **world** descrive il mondo di simulazione.  
+```xml
+<world name="default">
+  <physics type='ode'>
+    <gravity>0 0 -9.81</gravity>
+    <max_step_size>0.001</max_step_size>
+    <real_time_update_rate>1000</real_time_update_rate>
+  </physics>
+  <include>
+    <uri>model://sun</uri>
+  </include>
+  <include>
+    <uri>model://ground_plane</uri>
+  </include>
+  <include>
+    <name>my_box</name>
+    <uri>model://box</uri>
+    <pose> 2. 0. 0. 0. 0. 0.</pose>
+  </include>
+  <include>
+    <name>my_cone</name>
+    <uri>model://cone</uri>
+    <pose> 3. 0. 0. 0. 0. 0.</pose>
+  </include>
+</world>
+```
+Il tag **include** permette di includere un modello all'interno del mondo di simulazione.  
+Il tag **uri** permette di specificare il modello da includere.  
+Il tag **pose** permette di specificare la posizione del modello all'interno del mondo di simulazione.  
+
+Per creare un robot da zero, quindi, bisogna prima di tutto creare un nuovo pacchetto ROS e lo chiamiamo **myrobot_description**.  
+La struttura di sottocartelle per funzionare con LocoSim è:  
+```
+myrobot_description
+├── gazebo
+│   └── gazebo.urdf.xacro
+├── launch
+│   └── upload.launch
+├── meshes
+├── robots
+│   └── myrobot.urdf.xacro
+├── rviz
+├── scripts
+├── urdfs
+|  └── myleg.xacro
+|  └── myleg.transmission.xacro
+|  └── ...
+| CMakeLists.txt
+| package.xml
+```
+
+[ Pagina 36 / 52 ]  
